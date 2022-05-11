@@ -1,9 +1,19 @@
-import { Navigate } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import PublicFooter from './../components/Footers/PublicFooter'
+import PublicNavBar from './../components/Navbars/PublicNavBar'
 
-export const PrivateRoute = ({ children }) => {
-  const { cheking } = useSelector(state => state.auth)
-  return cheking
-    ? children
-    : <Navigate to='/login' />
+export const PrivateRouter = () => {
+  const { isLoggedIn } = useSelector(state => state.auth)
+  if (isLoggedIn) {
+    return (
+      <>
+        <PublicNavBar />
+        <Outlet />
+        <PublicFooter />
+      </>
+    )
+  } else {
+    return (<Navigate to='/login' />)
+  }
 }

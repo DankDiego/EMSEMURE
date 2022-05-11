@@ -1,13 +1,14 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from '../../hooks/useForm'
 import { startLogin } from '../../actions/auth'
+import { Navigate } from 'react-router-dom'
 
 export const LoginScreen = () => {
   const dispatch = useDispatch()
   const [formLoginValues, handleLoginInputChange] = useForm({
-    correo: '',
-    password: ''
+    correo: 'diego@gmail.com',
+    password: 'admin123'
   })
   const { correo, password } = formLoginValues
 
@@ -16,6 +17,10 @@ export const LoginScreen = () => {
     dispatch(startLogin(correo, password))
   }
 
+  const { isLoggedIn } = useSelector(state => state.auth)
+  if (isLoggedIn) {
+    return (<Navigate to='/inicio' />)
+  }
   return (
 
     <>

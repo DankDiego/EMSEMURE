@@ -18,9 +18,9 @@ export default function PublicNavBar () {
       <div className='items-center justify-center w-full  hidden md:block '>
         <span className='flex items-center justify-center w-full'>
           <Link className='p-4' to='/categorias'>Categorias</Link>
-          {isLoggedIn ? <Link className='p-4' to='/user/panel'>{nombre}</Link> : <Link className='p-4' to='/login'>Inicia Sesion</Link>}
+          {isLoggedIn ? <Link className='p-4' to='/usuario/panel'>{nombre}</Link> : <Link className='p-4' to='/login'>Inicia Sesion</Link>}
 
-          <Link className='p-4 flex items-center' to='/user/carrito'><RiShoppingCartLine /></Link>
+          <Link className='p-4 flex items-center' to='/usuario/carrito'><RiShoppingCartLine /></Link>
         </span>
       </div>
 

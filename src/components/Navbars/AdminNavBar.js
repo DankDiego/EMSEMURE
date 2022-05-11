@@ -16,7 +16,7 @@ export default function AdminNavBar () {
   return (
     <>
       <div className='flex flex-col flex-auto flex-shrink-0 antialiased bg-gray-200 text-gray-800'>
-        <div className='fixed flex flex-col top-0 left-0 w-64 bg-gray-900 h-full shadow-lg'>
+        <div className='absolute flex flex-col top-0 left-0 w-64 bg-gray-900 h-full shadow-lg'>
           <div className='flex items-center pl-6 h-20'>
             <GiPineTree size={32} className='text-white' />
             <div className='ml-1'>
@@ -43,7 +43,7 @@ export default function AdminNavBar () {
                   <span className='inline-flex justify-center items-center ml-4'>
                     <AiOutlineProfile />
                   </span>
-                  <span className='ml-2 font-semibold text-sm tracking-wide truncate font-sans'>Listar Categorias</span>
+                  <Link to='categoria/listar' className='ml-2 font-semibold text-sm tracking-wide truncate font-sans'>Listar Categorias</Link>
                 </a>
               </li>
               <li>

@@ -1,13 +1,14 @@
 import React from 'react'
 
-import { AiOutlineLoading3Quarters } from 'react-icons/ai'
-export const HomeScreen = ({ children }) => {
+export const HomeScreen = () => {
   return (
-    <>
-      <h1 className='pt-16 h-screen bg-yellow-200'>HOME SCREEN 123</h1>
-      <div className='bg-cyan-700'>
-        <AiOutlineLoading3Quarters className='animate-spin' />
+    <div className='min-h-screen bg-yellow-200 py-6 flex flex-col justify-center sm:py-12'>
+      <div className='relative py-3 sm:max-w-xl sm:mx-auto'>
+        <div className='max-w-md mx-auto text-center text-black'>
+          <h1 className='font-bold text-5xl mb-4 '>Bienvenido a EMSEMURE</h1>
+        </div>
       </div>
-    </>
+
+    </div>
   )
 }

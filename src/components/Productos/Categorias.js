@@ -1,13 +1,14 @@
 import React from 'react'
 
-import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 export const CategoriasScreen = ({ children }) => {
   return (
-    <>
-      <h1 className='pt-16 h-full bg-yellow-200'>CATEGORIAS</h1>
-      <div className='bg-cyan-700 h-screen'>
-        <AiOutlineLoading3Quarters className='animate-spin' />
+    <div className='min-h-screen bg-yellow-200 py-6 flex flex-col justify-center sm:py-12'>
+      <div className='relative py-3 sm:max-w-xl sm:mx-auto'>
+        <div className='max-w-md mx-auto text-center text-black'>
+          <h1 className='font-bold text-5xl mb-4 '>CATEGORIAS EN PROGRESO</h1>
+        </div>
       </div>
-    </>
+
+    </div>
   )
 }
