@@ -6,23 +6,33 @@ import { CrearCategoria } from './../../components/Productos/CrearCategoria'
 import { UserCartScreen } from './../../components/Usuarios/UserCartScreen'
 import { UserPanel } from './../../components/Usuarios/UserPanelScreen'
 import { CategoriaList } from './../../components/Productos/CategoriasList'
+import { ProductosList } from '../../components/Productos/ProductosList'
+import { CrearProducto } from './../../components/Productos/CrearProducto'
+import { RegisterScreen } from './../../components/auth/RegisterScreen'
 
 // AQUI LAS RUTAS PUBLICAS SIN NINGUN TIPO DE AUTENTICACION
 export const PublicRoute =
-[{
-  path: '/',
-  component: <HomeScreen />
-},
-{
-  path: 'inicio',
-  component: <HomeScreen />
-}, {
-  path: '/login',
-  component: <LoginScreen />
-}, {
-  path: 'categorias',
-  component: <CategoriasScreen />
-}
+[
+  {
+    path: '/',
+    component: <HomeScreen />
+  },
+  {
+    path: 'inicio',
+    component: <HomeScreen />
+  },
+  {
+    path: '/login',
+    component: <LoginScreen />
+  },
+  {
+    path: '/registro',
+    component: <RegisterScreen />
+  },
+  {
+    path: 'categorias',
+    component: <CategoriasScreen />
+  }
 ]
 // AQUI LAS RUTAS PRIVADAS DE USUARIO TIPO USER_ROLE
 export const PrivateRoute =
@@ -50,5 +60,14 @@ export const AdminRoute =
 {
   path: 'categoria/listar',
   component: <CategoriaList />
+},
+{
+  path: 'producto/listar',
+  component: <ProductosList />
+},
+{
+  path: 'producto/new',
+  component: <CrearProducto />
 }
+
 ]

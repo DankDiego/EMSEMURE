@@ -2,9 +2,9 @@ import { types } from '../types/types'
 
 const initialState = {
   isLoggedIn: false,
-  checking: true,
+  checking: false,
   user: {
-    rol: 'NO_ROLE',
+    rol: 'USER_ROLE',
     estado: true,
     google: false,
     nombre: 'Invitado',

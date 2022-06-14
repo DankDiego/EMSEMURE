@@ -48,20 +48,18 @@ export const startChecking = () => {
     try {
       const resp = await fetchConToken('auth/renew')
       const body = await resp.json()
-
+      const user = body.usuario
+      console.log(body.ok)
       if (body.ok) {
         localStorage.setItem('token', body.token)
         localStorage.setItem('token-init-date', new Date().getTime())
 
-        dispatch(login({
-          uid: body.uid,
-          name: body.name
-        }))
+        dispatch(login(user))
       } else {
         dispatch(checkingFinish())
       }
     } catch (error) {
-      console.log('error de mierda')
+      console.log('error start checking')
     }
   }
 }

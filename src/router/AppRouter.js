@@ -1,4 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { startChecking } from '../actions/auth'
 import {
   BrowserRouter,
   Routes,
@@ -10,6 +13,12 @@ import { PrivateRouter } from './PrivateRouter'
 import { PublicRoute, AdminRoute, PrivateRoute } from './Routes/RutasArray'
 
 export const AppRouter = () => {
+  const dispatch = useDispatch()
+  const { checking } = useSelector((state) => state.auth)
+  useEffect(() => {
+    dispatch(startChecking())
+  }, [dispatch])
+
   const PublicRoutes = PublicRoute.map(({ path, component }, key) =>
     <Route path={path} element={component} key={key} />
   )
@@ -19,6 +28,9 @@ export const AppRouter = () => {
   const PrivateRoutes = PrivateRoute.map(({ path, component }, key) =>
     <Route path={path} element={component} key={key} />
   )
+  if (checking) {
+    return <h5>Espere...</h5>
+  }
   return (
     <BrowserRouter>
       <Routes>

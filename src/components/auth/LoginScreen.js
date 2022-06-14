@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from '../../hooks/useForm'
 import { startLogin } from '../../actions/auth'
-import { Navigate } from 'react-router-dom'
+import { Navigate, Link } from 'react-router-dom'
 
 export const LoginScreen = () => {
   const dispatch = useDispatch()
@@ -69,18 +69,18 @@ export const LoginScreen = () => {
 
             <div className='flex items-center space-x-4'>
               <hr className='border border-gray-300' />
-              <div className='p-2 w-full font-semibold text-gray-400'>También puedes iniciar sesión con</div>
+              <div className='p-2 w-full font-semibold text-gray-400'>No tienes cuenta registrate</div>
               <hr className='border border-gray-300' />
             </div>
 
             <footer>
               <div className='flex w-full items-center'>
 
-                <a
-                  href='#'
+                <Link
+                  to='/registro'
                   className='w-full rounded-2xl border-b-2 border-b-gray-300 bg-white py-2.5 px-4 font-bold text-blue-500 ring-2 ring-gray-300 hover:bg-gray-200 active:translate-y-[0.125rem] active:border-b-gray-200'
-                >GOOGLE
-                </a>
+                >Registro
+                </Link>
               </div>
 
               <div className='mt-8 text-sm text-gray-400'>

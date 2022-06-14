@@ -16,7 +16,7 @@ export default function AdminNavBar () {
   return (
     <>
       <div className='flex flex-col flex-auto flex-shrink-0 antialiased bg-gray-200 text-gray-800'>
-        <div className='absolute flex flex-col top-0 left-0 w-64 bg-gray-900 h-full shadow-lg'>
+        <div className='absolute flex flex-col top-0 left-0 w-64 bg-gray-900 h-full'>
           <div className='flex items-center pl-6 h-20'>
             <GiPineTree size={32} className='text-white' />
             <div className='ml-1'>
@@ -39,30 +39,30 @@ export default function AdminNavBar () {
                 </div>
               </li>
               <li>
-                <a className='relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-700 text-gray-500 hover:text-gray-200 border-l-4 border-transparent hover:border-blue-500 pr-6'>
+                <div className='relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-700 text-gray-500 hover:text-gray-200 border-l-4 border-transparent hover:border-blue-500 pr-6'>
                   <span className='inline-flex justify-center items-center ml-4'>
                     <AiOutlineProfile />
                   </span>
                   <Link to='categoria/listar' className='ml-2 font-semibold text-sm tracking-wide truncate font-sans'>Listar Categorias</Link>
-                </a>
+                </div>
               </li>
               <li>
-                <a className='relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-700 text-gray-500 hover:text-gray-200 border-l-4 border-transparent hover:border-blue-500 pr-6'>
+                <div className='relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-700 text-gray-500 hover:text-gray-200 border-l-4 border-transparent hover:border-blue-500 pr-6'>
                   <span className='inline-flex justify-center items-center ml-4'>
 
                     <AiFillPlusSquare />
                   </span>
-                  <span className='ml-2 font-semibold text-sm tracking-wide truncate font-sans'>Registrar Producto</span>
-                </a>
+                  <Link to='producto/new' className='ml-2 font-semibold text-sm tracking-wide truncate font-sans'>Registrar Producto</Link>
+                </div>
               </li>
               <li>
-                <a className='relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-700 text-gray-500 hover:text-gray-200 border-l-4 border-transparent hover:border-blue-500 pr-6'>
+                <div className='relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-700 text-gray-500 hover:text-gray-200 border-l-4 border-transparent hover:border-blue-500 pr-6'>
                   <span className='inline-flex justify-center items-center ml-4'>
 
                     <AiOutlineOrderedList />
                   </span>
-                  <span className='ml-2 font-semibold text-sm tracking-wide truncate font-sans'>Listar Productos</span>
-                </a>
+                  <Link to='producto/listar' className='ml-2 font-semibold text-sm tracking-wide truncate font-sans'>Listar Productos</Link>
+                </div>
               </li>
               <li className='px-5'>
                 <div className='flex flex-row items-center h-8'>
@@ -70,20 +70,20 @@ export default function AdminNavBar () {
                 </div>
               </li>
               <li>
-                <a className='relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-700 text-gray-500 hover:text-gray-200 border-l-4 border-transparent hover:border-blue-500 pr-6'>
+                <div className='relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-700 text-gray-500 hover:text-gray-200 border-l-4 border-transparent hover:border-blue-500 pr-6'>
                   <span className='inline-flex justify-center items-center ml-4'>
                     <AiOutlineTeam />
                   </span>
                   <span className='ml-2 font-semibold text-sm tracking-wide truncate font-sans'>Listar Usuarios</span>
-                </a>
+                </div>
               </li>
               <li>
-                <a className='relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-700 text-gray-500 hover:text-gray-200 border-l-4 border-transparent hover:border-blue-500 pr-6'>
+                <div className='relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-700 text-gray-500 hover:text-gray-200 border-l-4 border-transparent hover:border-blue-500 pr-6'>
                   <span className='inline-flex justify-center items-center ml-4'>
                     <AiOutlineTeam />
                   </span>
                   <span className='ml-2 font-semibold text-sm tracking-wide truncate font-sans'>otra opcion usuarios</span>
-                </a>
+                </div>
               </li>
 
               <li className='px-5'>
@@ -92,20 +92,20 @@ export default function AdminNavBar () {
                 </div>
               </li>
               <li>
-                <a className='relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-700 text-gray-500 hover:text-gray-200 border-l-4 border-transparent hover:border-blue-500 pr-6'>
+                <div className='relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-700 text-gray-500 hover:text-gray-200 border-l-4 border-transparent hover:border-blue-500 pr-6'>
                   <span className='inline-flex justify-center items-center ml-4'>
                     <AiOutlineShop />
                   </span>
                   <span className='ml-2 font-semibold text-sm tracking-wide truncate font-sans'>Listar Pedidos</span>
-                </a>
+                </div>
               </li>
               <li>
-                <a className='relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-700 text-gray-500 hover:text-gray-200 border-l-4 border-transparent hover:border-blue-500 pr-6'>
+                <div className='relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-700 text-gray-500 hover:text-gray-200 border-l-4 border-transparent hover:border-blue-500 pr-6'>
                   <span className='inline-flex justify-center items-center ml-4'>
                     <AiOutlineEuro />
                   </span>
                   <span className='ml-2 font-semibold text-sm tracking-wide truncate font-sans'>Generar Cupon</span>
-                </a>
+                </div>
               </li>
               <li className='px-5'>
                 <div className='flex flex-row items-center h-8'>
@@ -113,20 +113,20 @@ export default function AdminNavBar () {
                 </div>
               </li>
               <li>
-                <a className='relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-700 text-gray-500 hover:text-gray-200 border-l-4 border-transparent hover:border-blue-500 pr-6'>
+                <div className='relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-700 text-gray-500 hover:text-gray-200 border-l-4 border-transparent hover:border-blue-500 pr-6'>
                   <span className='inline-flex justify-center items-center ml-4'>
                     <AiOutlineLineChart />
                   </span>
                   <span className='ml-2 font-semibold text-sm tracking-wide truncate font-sans'>Charts</span>
-                </a>
+                </div>
               </li>
               <li>
-                <a className='relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-700 text-gray-500 hover:text-gray-200 border-l-4 border-transparent hover:border-red-500 pr-6'>
+                <div className='relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-700 text-gray-500 hover:text-gray-200 border-l-4 border-transparent hover:border-red-500 pr-6'>
                   <span className='inline-flex justify-center items-center ml-4 text-red-500'>
                     <AiOutlineLogout />
                   </span>
                   <span className='ml-2 font-semibold text-sm tracking-wide text-red-500 truncate font-sans'>Salir</span>
-                </a>
+                </div>
               </li>
             </ul>
           </div>
