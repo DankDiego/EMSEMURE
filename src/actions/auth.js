@@ -12,7 +12,8 @@ export const startLogin = (correo, password) => {
       console.log('LOGUEADO CORRECTAMENTE')
       localStorage.setItem('token', body.token)
       localStorage.setItem('token-init-date', new Date().getTime())
-
+      localStorage.setItem('ROLE_ACCOUNT', body.usuario.rol)
+      localStorage.setItem('PASSPORT', body.ok)
       dispatch(login({
         user: body.usuario,
         isLoggedIn: true
@@ -25,18 +26,12 @@ export const startLogin = (correo, password) => {
 }
 
 export const startRegister = (email, password, name) => {
-  return async (dispatch) => {
+  return async () => {
     const resp = await fetchSinToken('auth/new', { email, password, name }, 'POST')
     const body = await resp.json()
 
     if (body.ok) {
-      localStorage.setItem('token', body.token)
-      localStorage.setItem('token-init-date', new Date().getTime())
-
-      dispatch(login({
-        uid: body.uid,
-        name: body.name
-      }))
+      console.log('REGISTRO OK')
     } else {
       Swal.fire('Error', body.msg, 'error')
     }
@@ -48,18 +43,24 @@ export const startChecking = () => {
     try {
       const resp = await fetchConToken('auth/renew')
       const body = await resp.json()
-      const user = body.usuario
       console.log(body.ok)
       if (body.ok) {
         localStorage.setItem('token', body.token)
         localStorage.setItem('token-init-date', new Date().getTime())
+        localStorage.setItem('ROLE_ACCOUNT', body.usuario.rol)
+        localStorage.setItem('PASSPORT', body.ok)
+        dispatch(login({
+          user: body.usuario,
+          isLoggedIn: true
 
-        dispatch(login(user))
+        }))
       } else {
         dispatch(checkingFinish())
+        localStorage.clear()
       }
     } catch (error) {
       console.log('error start checking')
+      localStorage.clear()
     }
   }
 }
@@ -73,6 +74,7 @@ const login = (user) => ({
 
 export const startLogout = () => {
   return (dispatch) => {
+    console.log('start logout')
     localStorage.clear()
     dispatch(logout())
   }

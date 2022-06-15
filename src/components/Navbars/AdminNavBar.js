@@ -1,4 +1,6 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { startLogout } from '../../actions/auth'
 import {
   AiOutlineLogout,
   AiFillPlusSquare,
@@ -13,6 +15,10 @@ import {
 import { GiPineTree } from 'react-icons/gi'
 import { Link } from 'react-router-dom'
 export default function AdminNavBar () {
+  const dispatch = useDispatch()
+  const Salir = () => {
+    dispatch(startLogout())
+  }
   return (
     <>
       <div className='flex flex-col flex-auto flex-shrink-0 antialiased bg-gray-200 text-gray-800'>
@@ -121,12 +127,12 @@ export default function AdminNavBar () {
                 </div>
               </li>
               <li>
-                <div className='relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-700 text-gray-500 hover:text-gray-200 border-l-4 border-transparent hover:border-red-500 pr-6'>
+                <Link to='/login' onClick={Salir} className='w-full relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-700 text-gray-500 hover:text-gray-200 border-l-4 border-transparent hover:border-red-500 pr-6'>
                   <span className='inline-flex justify-center items-center ml-4 text-red-500'>
                     <AiOutlineLogout />
                   </span>
                   <span className='ml-2 font-semibold text-sm tracking-wide text-red-500 truncate font-sans'>Salir</span>
-                </div>
+                </Link>
               </li>
             </ul>
           </div>

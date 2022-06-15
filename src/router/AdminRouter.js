@@ -4,10 +4,14 @@ import AdminNavBar from './../components/Navbars/AdminNavBar'
 
 export const AdminRouter = () => {
   /* const isAdmin = true */
-  const { isLoggedIn } = useSelector(state => state.auth)
-  if (isLoggedIn) {
+  /* const { isLoggedIn } = useSelector(state => state.auth) */
+  // eslint-disable-next-line no-undef
+  const ROLE_ACCOUNT = localStorage.getItem('ROLE_ACCOUNT')
+  // eslint-disable-next-line no-undef
+  const PASSPORT = localStorage.getItem('PASSPORT')
+  if (PASSPORT) {
     const { rol/* , estado, nombre, correo, uid */ } = useSelector(state => state.auth.user)
-    if (rol === 'ADMIN_ROLE') {
+    if (ROLE_ACCOUNT === 'ADMIN_ROLE') {
       console.log('este usuario es', rol)
       return (
         <div className='flex min-h-screen'>
