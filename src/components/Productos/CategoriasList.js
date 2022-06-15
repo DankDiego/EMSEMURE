@@ -37,11 +37,13 @@ export const CategoriaList = () => {
     []
   )
 
-  return (
-    !Categorias.length
-      ? <LoaderReact />
-      : <><DinamicTable data={data} columns={columns} tablename='Categorias' /></>
-      /* : <TableStyled /> */
-
-  )
+  return (!Categorias.length
+    ? (
+      <LoaderReact />
+      )
+    : (
+      <>
+        <DinamicTable data={data} columns={columns} tablename='Categorias' />
+      </>
+      ) /*: <TableStyled /> */)
 }

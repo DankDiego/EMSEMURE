@@ -45,10 +45,5 @@ export const ProductosList = () => {
     []
   )
 
-  return (
-    !Productos.length
-      ? <LoaderReact />
-      : <DinamicTable data={data} columns={columns} tablename='Productos' />
-
-  )
+  return !Productos.length ? <LoaderReact /> : <DinamicTable data={data} columns={columns} tablename='Productos' />
 }
