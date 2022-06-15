@@ -58,7 +58,7 @@ export const CrearProducto = () => {
 
                 <div className='-mx-3 md:flex mb-6'>
                   <div className='md:w-1/2 px-3 mb-6 md:mb-0'>
-                    <label className='block  tracking-wide text-grey-darker text-xs  mb-1' for='grid-first-name'>
+                    <label className='block  tracking-wide text-grey-darker text-xs  mb-1'>
                       Nombre
                     </label>
 
@@ -75,7 +75,7 @@ export const CrearProducto = () => {
                     {errors.nombre && <span className='text-red text-xs italic text-red-500'>{errors.nombre.message}</span>}
                   </div>
                   <div className='md:w-1/2 px-3'>
-                    <label className='block  tracking-wide text-grey-darker text-xs  mb-1' for='grid-last-name'>
+                    <label className='block  tracking-wide text-grey-darker text-xs  mb-1'>
                       Categoria
                     </label>
                     <select
@@ -102,7 +102,7 @@ export const CrearProducto = () => {
                 </div>
                 <div className='-mx-3 md:flex mb-6'>
                   <div className='md:w-1/2 px-3 mb-6 md:mb-0'>
-                    <label className='block  tracking-wide text-grey-darker text-xs  mb-1' for='grid-first-name'>
+                    <label className='block  tracking-wide text-grey-darker text-xs  mb-1'>
                       Precio s/.
                     </label>
 
@@ -120,7 +120,7 @@ export const CrearProducto = () => {
                     {errors.precio && <span className='text-red text-xs italic text-red-500'>{errors.precio.message}</span>}
                   </div>
                   <div className='md:w-1/2 px-3'>
-                    <label className='block  tracking-wide text-grey-darker text-xs  mb-1' for='grid-last-name'>
+                    <label className='block  tracking-wide text-grey-darker text-xs  mb-1'>
                       Cantidad:
                     </label>
 
@@ -143,7 +143,7 @@ export const CrearProducto = () => {
                   </div>
                 </div>
                 <div className='flex flex-col'>
-                  <label className='block  tracking-wide text-grey-darker text-xs  mb-2' for='grid-first-name'>
+                  <label className='block  tracking-wide text-grey-darker text-xs  mb-2'>
                     Descripcion:
                   </label>
 

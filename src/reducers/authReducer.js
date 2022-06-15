@@ -30,8 +30,16 @@ export const authReducer = (state = initialState, action) => {
 
     case types.authLogout:
       return {
+        isLoggedIn: false,
         checking: false,
-        isLoggedIn: false
+        user: {
+          rol: 'USER_ROLE',
+          estado: true,
+          google: false,
+          nombre: '',
+          correo: '',
+          uid: ''
+        }
       }
 
     default:
