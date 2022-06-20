@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+
 const baseUrl = process.env.REACT_APP_API_URL
 
 const fetchSinToken = (endpoint, data, method = 'GET') => {
@@ -17,7 +18,7 @@ const fetchSinToken = (endpoint, data, method = 'GET') => {
   }
 }
 
-const fetchConToken = (endpoint, data, method = 'GET') => {
+const fetchConToken = (endpoint, data = {}, method = 'GET') => {
   const url = `${baseUrl}/${endpoint}`
   const token = localStorage.getItem('token') || ''
 
@@ -40,7 +41,19 @@ const fetchConToken = (endpoint, data, method = 'GET') => {
   }
 }
 
+const fetchImgProd = (data, proid) => {
+  const url = `${baseUrl}/uploads/productos/${proid}`
+  const method = 'PUT'
+  const formdata = new FormData()
+  formdata.append('archivo', data.imagen[0])
+  return fetch(url, {
+    method,
+    body: formdata
+  })
+}
+
 export {
   fetchSinToken,
-  fetchConToken
+  fetchConToken,
+  fetchImgProd
 }

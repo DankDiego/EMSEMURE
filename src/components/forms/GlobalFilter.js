@@ -14,7 +14,7 @@ export function GlobalFilter ({
 
   return (
 
-    <div className='relative text-gray-600 py-2'>
+    <div className='relative text-gray-600 self-start py-2'>
       <input
         type='search' name='serch'
         className='bg-white h-10 w-42 px-5 rounded-2xl text-sm focus:outline-none'

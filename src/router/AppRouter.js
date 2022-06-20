@@ -11,6 +11,7 @@ import { PublicRouter } from './PublicRouter'
 import { AdminRouter } from './AdminRouter'
 import { PrivateRouter } from './PrivateRouter'
 import { PublicRoute, AdminRoute, PrivateRoute } from './Routes/RutasArray'
+import { NotFound } from './../components/Home/NotFound'
 
 export const AppRouter = () => {
   const dispatch = useDispatch()
@@ -49,6 +50,7 @@ export const AppRouter = () => {
         <Route path='/admin' element={<AdminRouter />}>
           {AdminRoutes}
         </Route>
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   )

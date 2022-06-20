@@ -1,9 +1,7 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import { useDispatch } from 'react-redux'
-import { categoriaNew } from './../../actions/productos'
+import { PostApi } from '../../helpers'
 export const CrearCategoria = () => {
-  const dispatch = useDispatch()
   const {
     register,
     formState: { errors },
@@ -12,8 +10,9 @@ export const CrearCategoria = () => {
     mode: 'onChange'
   })
   const onSubmit = (categoria) => {
-    console.log(categoria)
-    dispatch(categoriaNew(categoria))
+    const ruta = 'categorias'
+    const data = categoria
+    PostApi(ruta, data)
   }
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='min-h-screen bg-gray-900 py-6 flex flex-col justify-center sm:py-12'>

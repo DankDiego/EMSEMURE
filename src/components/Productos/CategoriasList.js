@@ -43,7 +43,7 @@ export const CategoriaList = () => {
       )
     : (
       <>
-        <DinamicTable data={data} columns={columns} tablename='Categorias' />
+        <DinamicTable data={data} columns={columns} tablename='Categorias' apiruta='categorias' />
       </>
       ) /*: <TableStyled /> */)
 }

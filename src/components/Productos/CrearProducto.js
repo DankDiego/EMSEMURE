@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { fetchConToken, fetchSinToken } from '../../helpers/fetch'
+import { PostApi, fetchSinToken } from '../../helpers'
 import { LoaderReact } from './../tables/LoaderReact'
 export const CrearProducto = () => {
   const [Categorias, setCategorias] = useState([])
@@ -9,6 +9,7 @@ export const CrearProducto = () => {
       const resp = await fetchSinToken('categorias')
       const categorias = await resp.json()
       setCategorias(categorias.categorias)
+      console.log('-----LLAMADO A LA API-----')
     } catch (error) {
       console.log(error)
     }
@@ -17,7 +18,7 @@ export const CrearProducto = () => {
     GetCategorias()
   }, [])
   const selectdata = React.useMemo(() => [...Categorias], [Categorias])
-  console.log(selectdata)
+  console.log('selectedata ------------------')
   const {
     register,
     formState: { errors },
@@ -25,18 +26,10 @@ export const CrearProducto = () => {
   } = useForm({
     mode: 'onChange'
   })
-  async function PostProducto (data) {
-    try {
-      const resp = await fetchConToken('productos', data, 'POST')
-      const producto = await resp.json()
-      console.log(producto)
-    } catch (error) {
-      console.log(error)
-    }
-  }
   const onSubmit = (producto) => {
-    console.log(producto)
-    PostProducto(producto)
+    const ruta = 'productos'
+    const data = producto
+    PostApi(ruta, data)
   }
 
   if (!Categorias.length) {
@@ -79,7 +72,6 @@ export const CrearProducto = () => {
                       Categoria
                     </label>
                     <select
-                      onChange={console.log('cambio select')}
                       className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white'
                       type='select'
                       {...register('categoria', {

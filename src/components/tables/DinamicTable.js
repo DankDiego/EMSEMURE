@@ -1,8 +1,50 @@
 /* eslint-disable react/jsx-key */
-import React from 'react'
+import React, { useState } from 'react'
+import Swal from 'sweetalert2'
 import { useTable, useGlobalFilter, useSortBy, usePagination } from 'react-table'
 import { GlobalFilter } from '../forms/GlobalFilter'
-export const DinamicTable = ({ columns, data, tablename }) => {
+import { IconContext } from 'react-icons'
+import { AiOutlineDoubleLeft, AiOutlineLeft, AiOutlineRight, AiOutlineDoubleRight, AiFillEdit, AiFillDelete, AiFillFileImage } from 'react-icons/ai'
+import { useNavigate } from 'react-router-dom'
+import { DeleteApi } from '../../helpers'
+import { ModalComp } from './../Container/Modal'
+export const DinamicTable = ({ columns, data, tablename, apiruta }) => {
+  const navigate = useNavigate()
+  const DeleteItem = (idRow) => {
+    const ruta = apiruta + '/' + idRow
+    console.log(ruta)
+    Swal.fire({
+      title: 'Estas seguro?',
+      text: 'No podras deshacer este cambio',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Si, borrar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        DeleteApi(ruta)
+      }
+    })
+  }
+  const [isOpen, setIsOpen] = useState({ open: false, prodid: '' })
+  const tableHooks = (hooks) => {
+    hooks.visibleColumns.push((columns) => [
+      ...columns,
+      {
+        id: 'Acciones',
+        Header: 'Acciones',
+        Cell: ({ row }) => (
+          <div className='flex hover:cursor-pointer space-x-2 text-white'>
+            <AiFillEdit size={20} onClick={() => navigate('/admin/' + apiruta + '/edit/' + row.values._id)} />
+            <AiFillDelete size={20} onClick={() => DeleteItem(row.values._id)} />
+            {(apiruta === 'productos') ? <AiFillFileImage size={20} onClick={() => setIsOpen({ open: true, proid: row.values._id })} /> : ''}
+          </div>
+        )
+      }
+    ])
+  }
   const {
     getTableProps,
     getTableBodyProps,
@@ -24,10 +66,11 @@ export const DinamicTable = ({ columns, data, tablename }) => {
     {
       columns,
       data,
-      initialState: { pageSize: 5 }
+      initialState: { hiddenColumns: ['_id'], pageSize: 5 }
     },
     useGlobalFilter,
     useSortBy,
+    tableHooks,
     usePagination)
 
   return (
@@ -38,26 +81,26 @@ export const DinamicTable = ({ columns, data, tablename }) => {
             <div className='text-center font-semibold text-xl self-start text-white'>
               <h2 className='leading-relaxed text-2xl'>Lista de {tablename} </h2>
             </div>
-            <div className='inline-block min-w-full col-span-12'>
-              <div className='flex text-white'>
-                <GlobalFilter setGlobalFilter={setGlobalFilter} globalFilter={state.globalFilter} />
+            <div className='inline-block min-w-full col-span-12 pt-2'>
+              <div className='flex text-white text-center justify-center'>
 
-                <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-                  {'<<'}
-                </button>{' '}
-                <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-                  {'<'}
-                </button>{' '}
-                <button onClick={() => nextPage()} disabled={!canNextPage}>
-                  {'>'}
-                </button>{' '}
-                <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-                  {'>>'}
-                </button>{' '}
-                <span>
-                  Page{' '}
+                <GlobalFilter className='px-6' setGlobalFilter={setGlobalFilter} globalFilter={state.globalFilter} />
+                <div className='pl-6 flex hover:cursor-pointer text-white text-center justify-center'>
+                  <IconContext.Provider value={{ color: 'white', size: 25 }}>
+                    {/*  //primera pagina */}
+                    <AiOutlineDoubleLeft className='self-center' onClick={() => gotoPage(0)} disabled={!canPreviousPage} />{' '}
+                    {/*  //sgt pagina */}
+                    <AiOutlineLeft className='self-center' onClick={() => previousPage()} disabled={!canPreviousPage} />{' '}
+                    {/*  //pagina anterior */}
+                    <AiOutlineRight className='self-center' onClick={() => nextPage()} disabled={!canNextPage} />{' '}
+                    {/*  //ultima pagina */}
+                    <AiOutlineDoubleRight className='self-center' onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage} />{' '}
+                  </IconContext.Provider>
+                </div>
+                <span className='px-6 self-center'>
+                  Pagina{' '}
                   <strong>
-                    {pageIndex + 1} of {pageOptions.length}
+                    {pageIndex + 1} de {pageOptions.length}
                   </strong>{' '}
                 </span>
                 {/* <span>
@@ -73,7 +116,7 @@ export const DinamicTable = ({ columns, data, tablename }) => {
                   />
                 </span>{' '} */}
                 <select
-                  className='text-gray-600'
+                  className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg h-9 self-center dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white'
                   value={pageSize}
                   onChange={e => {
                     setPageSize(Number(e.target.value))
@@ -81,7 +124,7 @@ export const DinamicTable = ({ columns, data, tablename }) => {
                 >
                   {[5, 10, 20].map(pageSize => (
                     <option key={pageSize} value={pageSize}>
-                      Show {pageSize}
+                      Mostrar {pageSize}
                     </option>
                   ))}
                 </select>
@@ -126,6 +169,7 @@ export const DinamicTable = ({ columns, data, tablename }) => {
           </div>
         </div>
       </div>
+      {isOpen.open && <ModalComp isOpen={isOpen} setIsOpen={setIsOpen} />}
     </div>
   )
 }

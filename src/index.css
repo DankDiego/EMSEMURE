@@ -5,3 +5,34 @@
 .table {
     border-spacing: 0 10px;
 }
+
+body{
+background-color:#111827;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  ::-webkit-scrollbar-thumb:active {
+    background-color: #999999;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #e1e1e1;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-track:hover, ::-webkit-scrollbar-track:active {
+    background: #d4d4d4;
+  }

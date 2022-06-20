@@ -9,6 +9,7 @@ import { CategoriaList } from './../../components/Productos/CategoriasList'
 import { ProductosList } from '../../components/Productos/ProductosList'
 import { CrearProducto } from './../../components/Productos/CrearProducto'
 import { RegisterScreen } from './../../components/auth/RegisterScreen'
+import { EditProducto } from './../../components/Productos/EditProducto'
 
 // AQUI LAS RUTAS PUBLICAS SIN NINGUN TIPO DE AUTENTICACION
 export const PublicRoute =
@@ -68,6 +69,10 @@ export const AdminRoute =
 {
   path: 'producto/new',
   component: <CrearProducto />
+},
+{
+  path: 'productos/edit/:id',
+  component: <EditProducto />
 }
 
 ]

@@ -40,10 +40,14 @@ export const ProductosList = () => {
       {
         Header: 'descripcion',
         accessor: 'descripcion'
+      },
+      {
+        Header: 'id',
+        accessor: '_id'
       }
     ],
     []
   )
 
-  return !Productos.length ? <LoaderReact /> : <DinamicTable data={data} columns={columns} tablename='Productos' />
+  return !Productos.length ? <LoaderReact /> : <DinamicTable data={data} columns={columns} tablename='Productos' apiruta='productos' />
 }
