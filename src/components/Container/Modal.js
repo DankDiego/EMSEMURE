@@ -1,6 +1,6 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import { PutImgApi } from '../../helpers/RestApi'
+import { PutImgApi } from '../../helpers'
 export const ModalComp = ({ setIsOpen, isOpen }) => {
   const {
     register,

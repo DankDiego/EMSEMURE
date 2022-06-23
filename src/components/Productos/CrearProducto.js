@@ -9,7 +9,7 @@ export const CrearProducto = () => {
       const resp = await fetchSinToken('categorias')
       const categorias = await resp.json()
       setCategorias(categorias.categorias)
-      console.log('-----LLAMADO A LA API-----')
+      console.log('*****LLAMADO A LA API*****')
     } catch (error) {
       console.log(error)
     }
@@ -18,7 +18,6 @@ export const CrearProducto = () => {
     GetCategorias()
   }, [])
   const selectdata = React.useMemo(() => [...Categorias], [Categorias])
-  console.log('selectedata ------------------')
   const {
     register,
     formState: { errors },
@@ -156,7 +155,7 @@ export const CrearProducto = () => {
 
               <div className='pt-4 flex items-center space-x-4'>
 
-                <button type='submit' className='bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none'>Guardar</button>
+                <button type='submit' className='bg-blue-600 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none'>Guardar</button>
               </div>
             </div>
           </div>

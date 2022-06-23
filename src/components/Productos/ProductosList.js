@@ -38,6 +38,10 @@ export const ProductosList = () => {
         accessor: 'precio'
       },
       {
+        Header: 'Stock',
+        accessor: 'stock'
+      },
+      {
         Header: 'descripcion',
         accessor: 'descripcion'
       },

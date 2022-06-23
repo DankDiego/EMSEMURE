@@ -8,7 +8,7 @@ import { Productos } from './Productos'
 
 export const CategoriasScreen = () => {
   const [categoriaData, setCategoriaData] = useState([])
-  const [catname, setCatname] = useState('SILLONES')
+  const [catname, setCatname] = useState('SILLAS')
   const ElegirCat = (categoria) => {
     setCatname(categoria)
     console.log('cambiaste categoria')
@@ -27,7 +27,6 @@ export const CategoriasScreen = () => {
   if (!categorias) {
     return (<LoaderReact />)
   } else {
-    console.log('----------un render---------------')
     return (
       <section className='bg-white dark:bg-gray-900'>
         <Container>

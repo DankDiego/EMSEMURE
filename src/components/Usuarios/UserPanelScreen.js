@@ -1,14 +1,23 @@
 import React from 'react'
+import { Container } from '../Container'
+import UserNavBar from './../Navbars/UserNavBar'
 
-export const UserPanel = () => {
+export const UserPanel = () => { /*
+  const [UserOpc, setUserOpc] = useState('Perfil') */
   return (
-    <div className='min-h-screen bg-yellow-200 py-6 flex flex-col justify-center sm:py-12'>
-      <div className='relative py-3 sm:max-w-xl sm:mx-auto'>
-        <div className='max-w-md mx-auto text-center text-black'>
-          <h1 className='font-bold text-5xl mb-4 '>PANEL DE USUARIO EN PROGRESO</h1>
-        </div>
-      </div>
+    <section className='bg-white dark:bg-gray-900'>
+      <Container>
+        <div className='lg:flex lg:-mx-2'>
+          <UserNavBar />
 
-    </div>
+          <div className='mt-6 lg:mt-0 lg:px-2 lg:w-4/5 '>
+            <div className='flex items-center justify-between text-sm tracking-widest uppercase '>
+              <h1 className='mb-4 text-xl font-bold text-gray-500 dark:text-gray-300 '>User Panel</h1>
+            </div>
+
+          </div>
+        </div>
+      </Container>
+    </section>
   )
 }

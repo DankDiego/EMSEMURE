@@ -10,6 +10,8 @@ import { ProductosList } from '../../components/Productos/ProductosList'
 import { CrearProducto } from './../../components/Productos/CrearProducto'
 import { RegisterScreen } from './../../components/auth/RegisterScreen'
 import { EditProducto } from './../../components/Productos/EditProducto'
+import { EditCategoria } from './../../components/Productos/EditCategoria'
+import UserPerfil from './../../components/Usuarios/UserPerfil'
 
 // AQUI LAS RUTAS PUBLICAS SIN NINGUN TIPO DE AUTENTICACION
 export const PublicRoute =
@@ -44,7 +46,28 @@ export const PrivateRoute =
 {
   path: 'panel',
   component: <UserPanel />
+},
+{
+  path: 'panel/perfil',
+  component: <UserPerfil />
+},
+{
+  path: 'panel/pedidos',
+  component: <UserPanel />
+},
+{
+  path: 'panel/direccion',
+  component: <UserPanel />
+},
+{
+  path: 'panel/cupones',
+  component: <UserPanel />
+},
+{
+  path: 'panel/mensajes',
+  component: <UserPanel />
 }
+
 ]
 // AQUI LAS RUTAS DE ADMINISTRADOR TIPO ADMIN_ROLE
 export const AdminRoute =
@@ -73,6 +96,10 @@ export const AdminRoute =
 {
   path: 'productos/edit/:id',
   component: <EditProducto />
+},
+{
+  path: 'categorias/edit/:id',
+  component: <EditCategoria />
 }
 
 ]

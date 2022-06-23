@@ -1,24 +1,43 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { PostApi, fetchSinToken } from '../../helpers'
+
+import { useParams } from 'react-router-dom'
+import { fetchSinToken, PutApi } from '../../helpers'
 import { LoaderReact } from './../tables/LoaderReact'
 export const EditProducto = () => {
+  const { id } = useParams()
   const [Categorias, setCategorias] = useState([])
+  const [Producto, setProducto] = useState({
+    categoria: { _id: '', nombre: '' },
+    descripcion: '',
+    nombre: '',
+    precio: '',
+    cantidad: ''
+  })
   async function GetCategorias () {
     try {
       const resp = await fetchSinToken('categorias')
       const categorias = await resp.json()
       setCategorias(categorias.categorias)
-      console.log('-----LLAMADO A LA API-----')
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  async function GetProducto (id) {
+    try {
+      const endpoint = `productos/${id}`
+      const resp = await fetchSinToken(endpoint)
+      const producto = await resp.json()
+      setProducto(producto)
     } catch (error) {
       console.log(error)
     }
   }
   useEffect(() => {
     GetCategorias()
+    GetProducto(id)
   }, [])
   const selectdata = React.useMemo(() => [...Categorias], [Categorias])
-  console.log('selectedata ------------------')
   const {
     register,
     formState: { errors },
@@ -27,12 +46,15 @@ export const EditProducto = () => {
     mode: 'onChange'
   })
   const onSubmit = (producto) => {
-    const ruta = 'productos'
+    const ruta = `productos/${id}`
     const data = producto
-    PostApi(ruta, data)
+    PutApi(ruta, data)
   }
 
   if (!Categorias.length) {
+    return <LoaderReact />
+  }
+  if (Producto.length) {
     return <LoaderReact />
   }
   return (
@@ -57,6 +79,7 @@ export const EditProducto = () => {
                       </label>
 
                       <input
+                        defaultValue={Producto.nombre}
                         className={`px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600 ${errors.nombre && 'bg-red-50  border-red-500 focus:border-red-500'}`} id='grid-first-name' type='text'
                         {...register('nombre', {
                           required: '*Este campo es requerido',
@@ -79,8 +102,8 @@ export const EditProducto = () => {
                           required: '*Este campo es requerido'
                         })}
                       >
-                        <option value=''>
-                          Seleccione Categoria
+                        <option value={Producto.categoria._id}>
+                          {Producto.categoria.nombre}
                         </option>
                         {selectdata.map((val, key) => {
                           return (
@@ -100,6 +123,7 @@ export const EditProducto = () => {
                       </label>
 
                       <input
+                        defaultValue={Producto.precio}
                         type='text'
                         className={`px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600 ${errors.precio && 'bg-red-50  border-red-500 focus:border-red-500'}`} id='grid-first-name'
                         {...register('precio', {
@@ -119,7 +143,7 @@ export const EditProducto = () => {
 
                       <input
                         className={`px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600 ${errors.stock && 'bg-red-50  border-red-500 focus:border-red-500'}`} id='grid-last-name' type='number'
-                        defaultValue={1}
+                        defaultValue={Producto.stock}
                         {...register('stock', {
                           required: '*Este campo es requerido',
                           maxLength: {
@@ -141,6 +165,7 @@ export const EditProducto = () => {
                     </label>
 
                     <textarea
+                      defaultValue={Producto.descripcion}
                       className={`resize-none px-2 py-2 h-28 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600 ${errors.descripcion && 'bg-red-50  border-red-500 focus:border-red-500'}`} placeholder='Descripcion .......'
                       {...register('descripcion', {
                         required: '*Este campo es requerido',

@@ -83,3 +83,31 @@ export async function PutImgApi (data, proid) {
     )
   }
 }
+
+export async function PutApi (ruta, data) {
+  try {
+    const resp = await fetchConToken(ruta, data, 'PUT')
+    const body = await resp.json()
+    console.log(body)
+    if (body.ok) {
+      Swal.fire(
+        'Editado',
+        body.msg,
+        'success'
+      )
+    } else {
+      Swal.fire(
+        'Algo salio mal',
+        body.msg,
+        'error'
+      )
+    }
+  } catch (error) {
+    console.log(error)
+    Swal.fire(
+      'Algo salio mal',
+      'Intentalo mas tarde',
+      'error'
+    )
+  }
+}
