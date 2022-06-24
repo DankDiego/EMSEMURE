@@ -11,7 +11,7 @@ import { CrearProducto } from './../../components/Productos/CrearProducto'
 import { RegisterScreen } from './../../components/auth/RegisterScreen'
 import { EditProducto } from './../../components/Productos/EditProducto'
 import { EditCategoria } from './../../components/Productos/EditCategoria'
-import UserPerfil from './../../components/Usuarios/UserPerfil'
+import { VerProducto } from '../../components/Productos/VerProducto'
 
 // AQUI LAS RUTAS PUBLICAS SIN NINGUN TIPO DE AUTENTICACION
 export const PublicRoute =
@@ -33,8 +33,12 @@ export const PublicRoute =
     component: <RegisterScreen />
   },
   {
-    path: 'categorias',
+    path: '/categorias',
     component: <CategoriasScreen />
+  },
+  {
+    path: '/categorias/producto/:id',
+    component: <VerProducto />
   }
 ]
 // AQUI LAS RUTAS PRIVADAS DE USUARIO TIPO USER_ROLE
@@ -43,28 +47,9 @@ export const PrivateRoute =
   path: 'carrito',
   component: <UserCartScreen />
 },
+
 {
-  path: 'panel',
-  component: <UserPanel />
-},
-{
-  path: 'panel/perfil',
-  component: <UserPerfil />
-},
-{
-  path: 'panel/pedidos',
-  component: <UserPanel />
-},
-{
-  path: 'panel/direccion',
-  component: <UserPanel />
-},
-{
-  path: 'panel/cupones',
-  component: <UserPanel />
-},
-{
-  path: 'panel/mensajes',
+  path: 'panel/*',
   component: <UserPanel />
 }
 
