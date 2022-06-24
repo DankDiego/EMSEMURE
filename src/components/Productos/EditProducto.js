@@ -170,8 +170,8 @@ export const EditProducto = () => {
                       {...register('descripcion', {
                         required: '*Este campo es requerido',
                         maxLength: {
-                          value: 120,
-                          message: 'Maximo de 120 caracteres'
+                          value: 350,
+                          message: 'Maximo de 350 caracteres'
                         }
                       })}
                     />

@@ -65,7 +65,7 @@ export const EditCategoria = () => {
 
               </div>
               <div className='pt-4 flex items-center space-x-4'>
-                <button onClick={() => navigate(-1)} type='submit' className='bg-red-600 flex text-white justify-center items-center w-full  px-4 py-3 rounded-md focus:outline-none'>
+                <button onClick={() => navigate(-1)} type='button' className='bg-red-600 flex text-white justify-center items-center w-full  px-4 py-3 rounded-md focus:outline-none'>
                   Cancelar
                 </button>
                 <button type='submit' className='bg-green-600 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none'>Guardar</button>
