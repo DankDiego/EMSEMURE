@@ -9,7 +9,7 @@ export const types = {
 
   cartAddNew: '[cart] Adding product to cart',
   cartDeleted: '[cart] Removing product to cart',
-  cartLoaded: '[event] Events loaded'
+  cartLoaded: '[cart] Cart loaded'
 
   /*   uiOpenModal: '[ui] Open modal',
   uiCloseModal: '[ui] Close modal', */

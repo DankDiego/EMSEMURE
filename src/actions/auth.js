@@ -17,8 +17,8 @@ export const startLogin = (correo, password) => {
       dispatch(login({
         user: body.usuario,
         isLoggedIn: true
-
       }))
+      dispatch(loadCart({ cartProducts: body.usuario.cartlist }))
     } else {
       Swal.fire('Error', body.msg, 'error')
     }
@@ -54,6 +54,7 @@ export const startChecking = () => {
           isLoggedIn: true
 
         }))
+        dispatch(loadCart({ cartProducts: body.usuario.cartlist }))
       } else {
         dispatch(checkingFinish())
         localStorage.clear()
@@ -70,6 +71,10 @@ const checkingFinish = () => ({ type: types.authCheckingFinish })
 const login = (user) => ({
   type: types.authLogin,
   payload: user
+})
+const loadCart = (productos) => ({
+  type: types.cartLoaded,
+  payload: productos
 })
 
 export const startLogout = () => {

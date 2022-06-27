@@ -103,18 +103,7 @@ export const DinamicTable = ({ columns, data, tablename, apiruta }) => {
                     {pageIndex + 1} de {pageOptions.length}
                   </strong>{' '}
                 </span>
-                {/* <span>
-                  | Go to page:{' '}
-                  <input
-                    type='number'
-                    defaultValue={pageIndex + 1}
-                    onChange={e => {
-                      const page = e.target.value ? Number(e.target.value) - 1 : 0
-                      gotoPage(page)
-                    }}
-                    style={{ width: '100px' }}
-                  />
-                </span>{' '} */}
+
                 <select
                   className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg h-9 self-center dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white'
                   value={pageSize}
@@ -149,7 +138,7 @@ export const DinamicTable = ({ columns, data, tablename, apiruta }) => {
                   {page.map(row => {
                     prepareRow(row)
                     return (
-                      <tr {...row.getRowProps()} className='bg-gray-800 rounded-lg'>
+                      <tr {...row.getRowProps()} className='bg-gray-800 rounded-lg text-clip overflow-hidden'>
                         {row.cells.map(cell => {
                           return (
                             <td
