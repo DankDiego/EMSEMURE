@@ -8,6 +8,7 @@ export const types = {
   authLogout: '[auth] Logout',
 
   cartAddNew: '[cart] Adding product to cart',
+  cartRemove: '[cart] Removing product to cart',
   cartDeleted: '[cart] Removing product to cart',
   cartLoaded: '[cart] Cart loaded'
 

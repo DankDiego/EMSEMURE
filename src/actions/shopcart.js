@@ -31,7 +31,42 @@ export const startCartNew = (ProductoFiltrado, uid) => {
     }
   }
 }
+
+export const startCartRemove = (uid, _id) => {
+  return async (dispatch) => {
+    try {
+      console.log('REMOVIENDO PRODUDTO DEL CARRITO', _id)
+      const endpoint = 'usuarios/removecart/' + uid
+      const data = { prodid: _id }
+      const resp = await fetchConToken(endpoint, data, 'PUT')
+      const body = await resp.json()
+      if (body.ok) {
+        Swal.fire({
+          title: 'Removido',
+          icon: 'success',
+          showCancelButton: false,
+          showConfirmButton: false,
+          timer: 1000,
+          toast: true,
+          position: 'top-end',
+          width: 200
+        })
+        dispatch(CartRemoveProduct(_id))
+      } else {
+        Swal.fire('Inicia Sesion', 'Por favor inicia sesion', 'question')
+      }
+    } catch (error) {
+      Swal.fire('Error', 'Intentalo mas tarde', 'error')
+    }
+  }
+}
+
 const CartNewProduct = (ProductoShort) => ({
   type: types.cartAddNew,
   payload: ProductoShort
+})
+
+const CartRemoveProduct = (_id) => ({
+  type: types.cartRemove,
+  payload: _id
 })
