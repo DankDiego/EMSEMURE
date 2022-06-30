@@ -45,7 +45,7 @@ export default function UserPedidosList () {
       )
     : (
       <>
-        <DinamicTable data={data} columns={columns} tablename='Pedidos' apiruta='categorias' />
+        <DinamicTable data={data} columns={columns} tablename='Pedidos' apiruta='pedidos' />
       </>
       ) /*: <TableStyled /> */)
 }
