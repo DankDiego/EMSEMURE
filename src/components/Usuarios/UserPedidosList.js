@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { DinamicTable } from './../tables/DinamicTable'
 import { fetchSinToken } from '../../helpers/fetch'
-import { LoaderReact } from '../tables/LoaderReact'
 import { useSelector } from 'react-redux'
 export default function UserPedidosList () {
   const [Pedidos, setPedidos] = useState([])
@@ -41,7 +40,7 @@ export default function UserPedidosList () {
   )
   return (!Pedidos.length
     ? (
-      <LoaderReact />
+      <h1 className='text-white'>NO TIENES PEDIDOS AUN</h1>
       )
     : (
       <>

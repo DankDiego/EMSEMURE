@@ -12,7 +12,6 @@ import {
 } from '@stripe/react-stripe-js'
 import { fetchConToken } from '../../helpers'
 const stripeapikey = process.env.REACT_APP_STRIPE_KEY
-console.log(stripeapikey)
 const stripePromise = loadStripe(stripeapikey)
 
 const CheckoutForm = () => {

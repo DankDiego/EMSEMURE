@@ -28,7 +28,7 @@ export const EditProducto = () => {
       const endpoint = `productos/${id}`
       const resp = await fetchSinToken(endpoint)
       const producto = await resp.json()
-      setProducto(producto)
+      setProducto(producto.producto)
     } catch (error) {
       console.log(error)
     }
@@ -46,15 +46,14 @@ export const EditProducto = () => {
     mode: 'onChange'
   })
   const onSubmit = (producto) => {
+    console.log(producto)
     const ruta = `productos/${id}`
+    console.log('ruta:', ruta)
     const data = producto
     PutApi(ruta, data)
   }
 
   if (!Categorias.length) {
-    return <LoaderReact />
-  }
-  if (Producto.length) {
     return <LoaderReact />
   }
   return (
@@ -102,7 +101,7 @@ export const EditProducto = () => {
                           required: '*Este campo es requerido'
                         })}
                       >
-                        <option value={Producto.categoria._id}>
+                        <option value={Producto.categoria.nombre}>
                           {Producto.categoria.nombre}
                         </option>
                         {selectdata.map((val, key) => {
