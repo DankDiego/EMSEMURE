@@ -4,6 +4,7 @@ import { Container } from './../Container/Container'
 import { AiFillCloseCircle } from 'react-icons/ai'
 
 import { startCartRemove } from './../../actions/shopcart'
+import { Link } from 'react-router-dom'
 export const UserCartScreen = () => {
   const ListCart = useSelector(state => state.cart.cartProducts)
   const { uid } = useSelector(state => state.auth.user)
@@ -16,7 +17,10 @@ export const UserCartScreen = () => {
         <div className='container mx-auto  text-white'>
           <div className='w-full overflow-x-auto'>
             <div className='my-2'>
-              <h3 className='text-xl font-bold tracking-wider'>Lista de Productos</h3>
+              <Link to='checkoutproducts' className='font-bold text-lg text-left bg-gray-800 rounded text-white py-4 px-7 border border-transparent hover:bg-gray-600 hover:border-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-gray-900'>
+                Proceder con la compra
+              </Link>
+
             </div>
             <table className='w-full shadow-inner'>
               <thead>
@@ -26,7 +30,6 @@ export const UserCartScreen = () => {
                   <th className='px-6 py-3 font-bold whitespace-nowrap'>Quedan</th>
                   <th className='px-6 py-3 font-bold whitespace-nowrap'>Precio</th>
                   <th className='px-6 py-3 font-bold whitespace-nowrap'>Quitar </th>
-                  <th className='px-6 py-3 font-bold whitespace-nowrap'>Seleccionar</th>
                 </tr>
               </thead>
               <tbody>
@@ -55,9 +58,7 @@ export const UserCartScreen = () => {
                                 <AiFillCloseCircle size={28} onClick={() => dispatch(startCartRemove(uid, item._id))} />
                               </button>
                             </td>
-                            <td className='p-4 px-6 text-center whitespace-nowrap'>
-                              <input id='default-checkbox' type='checkbox' value='' className='w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600' />
-                            </td>
+
                           </tr>
                         )
                       })
@@ -67,6 +68,7 @@ export const UserCartScreen = () => {
             </table>
 
           </div>
+
         </div>
       </Container>
     )

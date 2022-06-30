@@ -10,7 +10,10 @@ export const types = {
   cartAddNew: '[cart] Adding product to cart',
   cartRemove: '[cart] Removing product to cart',
   cartDeleted: '[cart] Removing product to cart',
-  cartLoaded: '[cart] Cart loaded'
+  cartLoaded: '[cart] Cart loaded',
+  cartPlusOne: '[cart] Cart Added One Product',
+  cartMinusOne: '[cart] Cart Minus One Product',
+  cartMontoTotal: '[cart] Cart Monto Total'
 
   /*   uiOpenModal: '[ui] Open modal',
   uiCloseModal: '[ui] Close modal', */

@@ -18,7 +18,12 @@ export const startLogin = (correo, password) => {
         user: body.usuario,
         isLoggedIn: true
       }))
-      dispatch(loadCart({ cartProducts: body.usuario.cartlist }))
+      const arraydeproductos = body.usuario.cartlist
+      const arraymuteado = arraydeproductos.map(function (x) {
+        return { ...x, monto: x.precio, cantidad: 1 }
+      })
+      dispatch(loadCart({ cartProducts: arraymuteado }))
+      dispatch(CartSumMontoTotal())
     } else {
       Swal.fire('Error', body.msg, 'error')
     }
@@ -54,7 +59,12 @@ export const startChecking = () => {
           isLoggedIn: true
 
         }))
-        dispatch(loadCart({ cartProducts: body.usuario.cartlist }))
+        const arraydeproductos = body.usuario.cartlist
+        const arraymuteado = arraydeproductos.map(function (x) {
+          return { ...x, monto: x.precio, cantidad: 1 }
+        })
+        dispatch(loadCart({ cartProducts: arraymuteado }))
+        dispatch(CartSumMontoTotal())
       } else {
         dispatch(checkingFinish())
         localStorage.clear()
@@ -75,6 +85,9 @@ const login = (user) => ({
 const loadCart = (productos) => ({
   type: types.cartLoaded,
   payload: productos
+})
+const CartSumMontoTotal = () => ({
+  type: types.cartMontoTotal
 })
 
 export const startLogout = () => {
