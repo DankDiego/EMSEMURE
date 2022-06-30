@@ -1,10 +1,9 @@
-/* eslint-disable no-unused-vars */
+
 import React, { useEffect, useState } from 'react'
-/* import { useDispatch } from 'react-redux' */
+
 import { DinamicTable } from './../tables/DinamicTable'
 import { fetchSinToken } from '../../helpers/fetch'
 import { LoaderReact } from '../tables/LoaderReact'
-import { TableStyled } from './../tables/TableStyled'
 export const CategoriaList = () => {
   /* const dispatch = useDispatch() */
   const [Categorias, setCategorias] = useState([])

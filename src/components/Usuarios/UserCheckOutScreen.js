@@ -11,8 +11,9 @@ import {
   useElements
 } from '@stripe/react-stripe-js'
 import { fetchConToken } from '../../helpers'
-
-const stripePromise = loadStripe('pk_test_51LFjSnD99ejUCqPhnAYDdHfAaGru2XMa80u7gfco1QpR6cTUbHnTNVvhqXIKsCze25CAOaYz2lC00ujdk75UhTLR00vO7Ukwo3')
+const stripeapikey = process.env.REACT_APP_STRIPE_KEY
+console.log(stripeapikey)
+const stripePromise = loadStripe(stripeapikey)
 
 const CheckoutForm = () => {
   const navigate = useNavigate()
