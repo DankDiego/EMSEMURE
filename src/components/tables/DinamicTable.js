@@ -4,7 +4,7 @@ import Swal from 'sweetalert2'
 import { useTable, useGlobalFilter, useSortBy, usePagination } from 'react-table'
 import { GlobalFilter } from '../forms/GlobalFilter'
 import { IconContext } from 'react-icons'
-import { AiOutlineDoubleLeft, AiOutlineLeft, AiOutlineRight, AiOutlineDoubleRight, AiFillEdit, AiFillDelete, AiFillFileImage, AiFillEye } from 'react-icons/ai'
+import { AiOutlineDoubleLeft, AiOutlineLeft, AiOutlineRight, AiOutlineDoubleRight, AiFillEdit, AiFillDelete, AiFillFileImage } from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom'
 import { DeleteApi } from '../../helpers'
 import { ModalComp } from './../Container/Modal'
@@ -38,10 +38,10 @@ export const DinamicTable = ({ columns, data, tablename, apiruta }) => {
         Cell: ({ row }) => (
           <div className='flex hover:cursor-pointer space-x-2 text-white'>
 
-            {(apiruta !== 'pedidos') ? <AiFillEdit size={20} onClick={() => navigate('/admin/' + apiruta + '/edit/' + row.values._id)} /> : ''}
-            {(apiruta !== 'pedidos') ? <AiFillDelete size={20} onClick={() => DeleteItem(row.values._id)} /> : ''}
+            {(apiruta !== 'usuarios') ? <AiFillEdit size={20} onClick={() => navigate('/admin/' + apiruta + '/edit/' + row.values._id)} /> : ''}
+            {(apiruta !== 'usuarios') ? <AiFillDelete size={20} onClick={() => DeleteItem(row.values._id)} /> : ''}
             {(apiruta === 'productos') ? <AiFillFileImage size={20} onClick={() => setIsOpen({ open: true, proid: row.values._id })} /> : ''}
-            {(apiruta === 'pedidos') ? <AiFillEye size={20} /> : ''}
+            {(apiruta === 'usuarios') ? <AiFillDelete size={20} onClick={() => DeleteItem(row.values.uid)} /> : ''}
           </div>
         )
       }
@@ -68,7 +68,7 @@ export const DinamicTable = ({ columns, data, tablename, apiruta }) => {
     {
       columns,
       data,
-      initialState: { hiddenColumns: ['_id'], pageSize: 5 }
+      initialState: { hiddenColumns: ['_id', 'uid'], pageSize: 5 }
     },
     useGlobalFilter,
     useSortBy,

@@ -1,5 +1,4 @@
 import { Navigate, Outlet } from 'react-router-dom'
-import { useSelector } from 'react-redux'
 import AdminNavBar from './../components/Navbars/AdminNavBar'
 
 export const AdminRouter = () => {
@@ -10,9 +9,8 @@ export const AdminRouter = () => {
   // eslint-disable-next-line no-undef
   const PASSPORT = localStorage.getItem('PASSPORT')
   if (PASSPORT) {
-    const { rol/* , estado, nombre, correo, uid */ } = useSelector(state => state.auth.user)
     if (ROLE_ACCOUNT === 'ADMIN_ROLE') {
-      console.log('este usuario es', rol)
+      console.log('ADMIN LOGUEADO')
       return (
         <div className='flex min-h-screen'>
           <nav className='w-64 flex-shrink-0'>

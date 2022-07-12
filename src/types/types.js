@@ -13,10 +13,10 @@ export const types = {
   cartLoaded: '[cart] Cart loaded',
   cartPlusOne: '[cart] Cart Added One Product',
   cartMinusOne: '[cart] Cart Minus One Product',
-  cartMontoTotal: '[cart] Cart Monto Total'
+  cartMontoTotal: '[cart] Cart Monto Total',
 
-  /*   uiOpenModal: '[ui] Open modal',
-  uiCloseModal: '[ui] Close modal', */
+  uiOpenLoader: '[ui] Open Loader',
+  uiCloseLoader: '[ui] Close Loader'
 
   /*  eventSetActive: '[event] Set Active',
   eventLogout: '[event] Logout event', */

@@ -5,9 +5,11 @@ import { useForm } from 'react-hook-form'
 import { fetchSinToken } from '../../helpers/fetch'
 import { Navigate, Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import { distritos } from './distritos'
 
 export const RegisterScreen = () => {
   const [cargando, setcargando] = useState(false)
+  const selectdata = distritos
   const {
     register,
     watch,
@@ -29,17 +31,20 @@ export const RegisterScreen = () => {
           'success'
         )
       } else {
-        console.log(body.errors[0].msg)
-        Swal.fire('Error', body.errors[0].msg, 'error')
+        console.log(body.msg)
+        Swal.fire('Error', body.msg, 'error')
       }
     } catch (error) {
       console.log(error)
     }
   }
   const onSubmit = (user) => {
+    const { distrito, direccion, ...valores } = user
+    console.log(valores)
     const roluser = {
-      ...user,
-      rol: 'USER_ROLE'
+      ...valores,
+      rol: 'USER_ROLE',
+      direccion: `${distrito}-${direccion}`
     }
 
     PostUser(roluser)
@@ -133,6 +138,38 @@ export const RegisterScreen = () => {
                       value: 15,
                       message: 'Maximo 15 caracteres'
                     }
+                  })}
+                />
+              </div>
+              <div className='w-full'>
+                {errors.distrito && <span className='text-red text-xs italic text-red-500'>{errors.distrito.message}</span>}
+                <select
+                  className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white'
+                  type='select'
+                  {...register('distrito', {
+                    required: '*Este campo es requerido'
+                  })}
+                >
+                  <option value=''>
+                    Seleccione Distrito
+                  </option>
+                  {selectdata.map((val, key) => {
+                    return (
+                      <option key={key} value={val}>
+                        {val}
+                      </option>
+                    )
+                  })}
+                </select>
+
+              </div>
+              <div className='w-full'>
+                {errors.direccion && <span className='text-red text-xs italic text-red-500'>{errors.direccion.message}</span>}
+                <input
+                  placeholder='Direccion'
+                  className={`px-4 py-2 border focus:ring-gray-500  w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600 ${errors.direccion && 'bg-red-50  border-red-500 focus:border-red-500'}`} type='text'
+                  {...register('direccion', {
+                    required: '*Este campo es requerido'
                   })}
                 />
               </div>

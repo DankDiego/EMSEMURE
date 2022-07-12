@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-closing-tag-location */
 /* eslint-disable react/jsx-key */
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -32,10 +33,16 @@ export const Productos = ({ catname = 'SILLONES' }) => {
             </Link>
             <h4 className='mt-2 text-lg font-medium text-gray-700 truncate dark:text-gray-200'>{ProductoFiltrado.nombre}</h4>
             <p className='font-semibold text-blue-500'>${ProductoFiltrado.precio}</p>
-            <button onClick={() => dispatch(startCartNew(ProductoFiltrado, uid))} className='flex items-center justify-center w-full px-2 py-2 mt-4 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-gray-800 rounded-md hover:bg-gray-700 focus:outline-none focus:bg-gray-700'>
-              <AiOutlineShoppingCart />
-              <span className='mx-1'>Agregar</span>
-            </button>
+            {ProductoFiltrado.stock > 0
+              ? <button onClick={() => dispatch(startCartNew(ProductoFiltrado, uid))} className='flex items-center justify-center w-full px-2 py-2 mt-4 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-gray-800 rounded-md hover:bg-gray-700 focus:outline-none focus:bg-gray-700'>
+                <AiOutlineShoppingCart />
+                <span className='mx-1'>Agregar</span>
+              </button>
+              : <button className='flex items-center justify-center w-full px-2 py-2 mt-4 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-red-800 rounded-md hover:bg-gray-700 focus:outline-none focus:bg-gray-700'>
+                <AiOutlineShoppingCart />
+                <span className='mx-1'>No disponible</span>
+              </button>}
+
           </div>
 
         ))}

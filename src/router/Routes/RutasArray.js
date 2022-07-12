@@ -14,9 +14,10 @@ import { EditCategoria } from './../../components/Productos/EditCategoria'
 import { VerProducto } from '../../components/Productos/VerProducto'
 import UserPayScreen from './../../components/Usuarios/UserPayScreen'
 import UserCheckOutScreen from './../../components/Usuarios/UserCheckOutScreen'
-import Caca from '../../components/Usuarios/caca.js'
 import UserPayAproved from './../../components/Usuarios/UserPayAproved'
 import UserPayDesaproved from './../../components/Usuarios/UserPayDesaproved'
+import DashBoard from './../../components/Charts/DashBoard'
+import { UsuariosList } from './../../components/Productos/UsuariosList'
 
 // AQUI LAS RUTAS PUBLICAS SIN NINGUN TIPO DE AUTENTICACION
 export const PublicRoute =
@@ -44,10 +45,6 @@ export const PublicRoute =
   {
     path: '/categorias/producto/:id',
     component: <VerProducto />
-  },
-  {
-    path: '/caca',
-    component: <Caca />
   }
 ]
 // AQUI LAS RUTAS PRIVADAS DE USUARIO TIPO USER_ROLE
@@ -109,6 +106,14 @@ export const AdminRoute =
 {
   path: 'categorias/edit/:id',
   component: <EditCategoria />
+},
+{
+  path: 'usuarios/listar',
+  component: <UsuariosList />
+},
+{
+  path: 'charts/dashboard',
+  component: <DashBoard />
 }
 
 ]

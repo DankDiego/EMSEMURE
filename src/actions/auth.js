@@ -9,7 +9,6 @@ export const startLogin = (correo, password) => {
     const body = await resp.json()
 
     if (body.ok) {
-      console.log('LOGUEADO CORRECTAMENTE')
       localStorage.setItem('token', body.token)
       localStorage.setItem('token-init-date', new Date().getTime())
       localStorage.setItem('ROLE_ACCOUNT', body.usuario.rol)
@@ -48,7 +47,6 @@ export const startChecking = () => {
     try {
       const resp = await fetchConToken('auth/renew')
       const body = await resp.json()
-      console.log(body.ok)
       if (body.ok) {
         localStorage.setItem('token', body.token)
         localStorage.setItem('token-init-date', new Date().getTime())
