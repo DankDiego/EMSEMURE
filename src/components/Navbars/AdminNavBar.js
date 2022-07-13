@@ -94,7 +94,7 @@ export default function AdminNavBar () {
                   <span className='inline-flex justify-center items-center ml-4'>
                     <AiOutlineShop />
                   </span>
-                  <span className='ml-2 font-semibold text-sm tracking-wide truncate font-sans'>Listar Pedidos</span>
+                  <Link to='pedidos/listar' className='ml-2 font-semibold text-sm tracking-wide truncate font-sans'>Listar Pedidos</Link>
                 </div>
               </li>
               <li>

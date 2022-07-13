@@ -18,6 +18,8 @@ import UserPayAproved from './../../components/Usuarios/UserPayAproved'
 import UserPayDesaproved from './../../components/Usuarios/UserPayDesaproved'
 import DashBoard from './../../components/Charts/DashBoard'
 import { UsuariosList } from './../../components/Productos/UsuariosList'
+import PedidosList from './../../components/Pedidos/PedidosList'
+import PedidoChangeEstado from './../../components/Pedidos/PedidoChangeEstado'
 
 // AQUI LAS RUTAS PUBLICAS SIN NINGUN TIPO DE AUTENTICACION
 export const PublicRoute =
@@ -110,6 +112,14 @@ export const AdminRoute =
 {
   path: 'usuarios/listar',
   component: <UsuariosList />
+},
+{
+  path: 'pedidos/listar',
+  component: <PedidosList />
+},
+{
+  path: 'pedido/status/:id',
+  component: <PedidoChangeEstado />
 },
 {
   path: 'charts/dashboard',

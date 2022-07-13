@@ -1,27 +1,25 @@
 import React, { useEffect, useState } from 'react'
-import { PedidosTable } from './../tables/PedidosTable'
 import { fetchSinToken } from '../../helpers/fetch'
+import { LoaderReact } from '../tables/LoaderReact'
 import moment from 'moment'
-import { useSelector } from 'react-redux'
-export default function UserPedidosList () {
+import 'moment/locale/es'
+import { PedidosTable } from './../tables/PedidosTable'
+export default function PedidosList () {
   const [Pedidos, setPedidos] = useState([])
-  const { uid } = useSelector(state => state.auth.user)
-  async function GetCategorias () {
+  async function GetPedidos () {
     try {
-      const endpoint = `checkout/${uid}`
-      const resp = await fetchSinToken(endpoint)
-      const pedidos = await resp.json()
-
-      setPedidos(pedidos.pedidos)
+      const resp = await fetchSinToken('checkout')
+      const data = await resp.json()
+      console.log('DATA.PEDIDOS::::', data.pedidos)
+      setPedidos(data.pedidos)
     } catch (error) {
       console.log(error)
     }
   }
   useEffect(() => {
-    GetCategorias()
+    GetPedidos()
   }, [])
   const data = React.useMemo(() => [...Pedidos], [Pedidos])
-
   const columns = React.useMemo(
     () => [
       {
@@ -56,6 +54,10 @@ export default function UserPedidosList () {
         }
       },
       {
+        Header: 'Usuario',
+        accessor: 'usuario.nombre'
+      },
+      {
         Header: 'Estado',
         accessor: 'tracking'
       },
@@ -66,13 +68,14 @@ export default function UserPedidosList () {
     ],
     []
   )
+
   return (!Pedidos.length
     ? (
-      <h1 className='text-white'>NO TIENES PEDIDOS AUN</h1>
+      <LoaderReact />
       )
     : (
       <>
-        <PedidosTable data={data} columns={columns} tablename='Pedidos' apiruta='checkout' role='user' />
+        <PedidosTable data={data} columns={columns} tablename='Pedidos' apiruta='checkout' role='admin' />
       </>
       ) /*: <TableStyled /> */)
 }

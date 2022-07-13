@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 import { fetchSinToken } from '../../helpers'
-export const UserPedidosScreen = () => {
+import { CambiarEstadoPedido } from '../../helpers/RestApi'
+import { Container } from './../Container/Container'
+export default function PedidoChangeEstado () {
   const { id } = useParams()
   const navigate = useNavigate()
   const [Productos, setProductos] = useState('')
@@ -35,9 +38,29 @@ export const UserPedidosScreen = () => {
   useEffect(() => {
     GetPedido(id)
   }, [])
+
+  const ChangeStatus = (estado) => {
+    const ruta = 'checkout/pedido/' + id
+    console.log(ruta, estado)
+    Swal.fire({
+      title: 'Estas seguro?',
+      text: 'Cambiaras el estado del Pedido',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Si, Cambiar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        CambiarEstadoPedido(ruta, estado)
+        setPedidoEstado(estado)
+      }
+    })
+  }
   return (
-    <>
-      <h1 className='text-white text-3xl text-center mb-6'>Detalles de Pedido</h1>
+    <Container>
+      <h1 className='text-white text-3xl text-center mb-6'>Cambiar estado de Pedido</h1>
 
       <div className='flex items-center justify-between max-w-2xl px-8 py-4 mx-auto border cursor-pointer rounded-xl dark:border-gray-500 '>
 
@@ -115,15 +138,25 @@ export const UserPedidosScreen = () => {
         </h2>
 
       </div>
-
       <div className='flex items-center justify-between max-w-2xl px-8 py-4 mx-auto border cursor-pointer rounded-xl dark:border-gray-500 '>
 
-        <button onClick={() => navigate(-1)} type='button' className='bg-gray-600 flex text-white justify-center items-center w-full  px-4 py-3 rounded-md focus:outline-none'>
-          Volver
+        <button onClick={() => ChangeStatus('En Revision')} type='submit' className='bg-blue-600 w-28 h-10 rounded-md text-md text-white font-semibold'>
+          En Revision
+        </button>
+        <button onClick={() => ChangeStatus('En Camino')} type='submit' className='bg-yellow-600 w-28 h-10 rounded-md text-md text-white font-semibold'>
+          En Camino
+        </button>
+        <button onClick={() => ChangeStatus('Cancelado')} type='submit' className='bg-red-700 w-28 h-10 rounded-md text-md text-white font-semibold'>
+          Cancelado
+        </button>
+        <button onClick={() => ChangeStatus('Completado')} type='submit' className='bg-green-700 w-28 h-10 rounded-md text-md text-white font-semibold'>
+          Completado
         </button>
 
       </div>
-
-    </>
+      <button onClick={() => navigate(-1)} type='button' className='bg-gray-600 flex text-white justify-center items-center w-full  px-4 py-3 rounded-md focus:outline-none'>
+        Volver
+      </button>
+    </Container>
   )
 }
